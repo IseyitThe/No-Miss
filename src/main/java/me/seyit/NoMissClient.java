@@ -18,7 +18,7 @@ public class NoMissClient implements ClientModInitializer {
                 "key.no-miss.toggle",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_N,
-                "category.no-miss"
+                KeyBinding.Category.MISC
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
