@@ -6,7 +6,6 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.network.chat.Component;
-import org.lwjgl.glfw.GLFW;
 
 public class NoMissClient implements ClientModInitializer {
     private static boolean enabled = true;
@@ -16,8 +15,8 @@ public class NoMissClient implements ClientModInitializer {
     public void onInitializeClient() {
         toggleKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.no-miss.toggle",
-                InputConstants.Type.KEYSYM,
-                GLFW.GLFW_KEY_N,
+                InputConstants.Type.KEYBOARD,
+                InputConstants.KEY_N,
                 KeyMapping.Category.MISC
         ));
 
