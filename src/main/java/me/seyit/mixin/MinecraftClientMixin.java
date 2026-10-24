@@ -2,6 +2,9 @@ package me.seyit.mixin;
 
 import me.seyit.NoMissClient;
 import net.minecraft.client.Minecraft;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.phys.HitResult;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -14,7 +17,12 @@ public class MinecraftClientMixin {
     private void onAttack(CallbackInfoReturnable<Boolean> cir) {
         Minecraft mc = Minecraft.getInstance();
         
-        if (!NoMissClient.isEnabled()) {
+        if (!NoMissClient.isEnabled() || mc.player == null || mc.player.isCreative()) {
+            return;
+        }
+
+        ItemStack held = mc.player.getMainHandItem();
+        if (held.is(ItemTags.SPEARS) && held.getEnchantments().keySet().stream().anyMatch(e -> e.is(Enchantments.LUNGE))) {
             return;
         }
 
